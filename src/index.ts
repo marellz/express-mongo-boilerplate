@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
 import config from "./config/app";
-import db from "./config/db";
 import registerRoutes from "./router";
+import DBConnection from "./config/db";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
 const port = config.port;
-
+const db = new DBConnection()
 registerRoutes(app);
 db.connect();
 
